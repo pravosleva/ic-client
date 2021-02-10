@@ -1,7 +1,4 @@
-import React, { createContext, useState, useContext, useEffect } from 'react';
-import { useRouter } from 'next/router';
-import GuestLayout from '../layouts/GuestLayout';
-import PrivateLayout from '../layouts/PrivateLayout';
+import { createContext, useState, useContext, useEffect } from 'react';
 
 const AppContext = createContext({});
 

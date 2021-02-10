@@ -1,4 +1,4 @@
-import styles from './block.module.scss';
+import styles from './Block.module.scss';
 
 const Block = ({ children, className }) => {
     return <div className={`${styles.block} ${className}`}>{children}</div>;

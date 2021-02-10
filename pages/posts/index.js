@@ -1,31 +1,55 @@
-import PostsApi from '../../api/PostApi';
+import { useState } from 'react';
+import { Modal } from 'react-responsive-modal';
+import 'react-responsive-modal/styles.css';
+
+import PostApi from '../../api/PostsApi';
+import Table from '../../components/Table/Table';
+import PostEditForm from '../../components/Posts/PostEditForm';
+
+const cols = [
+    {
+        id: 'id',
+        title: '#'
+    },
+    {
+        id: 'title',
+        title: 'Title'
+    }
+];
 
 const Posts = ({ posts, error }) => {
+    const [modalOpen, setModalOpen] = useState(false);
+    const [currentPost, setCurrentPost] = useState(null);
+
+    const openEditModal = (item) => {
+        setModalOpen(true);
+        setCurrentPost(item);
+    }
+
+    const onCloseModal = () => {
+        setModalOpen(false);
+        setCurrentPost(null);
+    }
+
     return (
-        <table className="table table-hover">
-            <thead>
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Title</th>
-                    <th scope="col">Handle</th>
-                </tr>
-            </thead>
-            <tbody>
-                {posts.map(({ id, title }) => (
-                    <tr key={id}>
-                        <td>{id}</td>
-                        <td>{title}</td>
-                    </tr>
-                ))}
-            </tbody>
-        </table>
+        <>
+            <Table itemsPerPage={15} data={posts} cols={cols} actionHandler={openEditModal} />
+            {currentPost &&
+                <Modal open={modalOpen} onClose={onCloseModal} center classNames={{ modal: 'w-50' }}>
+                    <h2>Edit post {currentPost.id}</h2>
+                    <div className="row pt-3">
+                        <div className="col-12">
+                            <PostEditForm post={currentPost} onSubmitCallback={onCloseModal} />
+                        </div>
+                    </div>
+                </Modal>
+            }
+        </>
     );
 };
 
 export async function getServerSideProps() {
-    const ITEMS_PER_PAGE = 10;
-
-    const posts = await PostsApi.getPosts();
+    const posts = await PostApi.getPosts();
 
     return {
         props: {

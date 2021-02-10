@@ -2,7 +2,7 @@ import Head from 'next/head';
 import { Fragment } from 'react';
 import { AppProvider } from '../contexts/AppContext';
 import '../styles/styles.scss';
-import Route from '../components/route/route';
+import Route from '../components/Route/Route';
 
 export default function App({ Component, pageProps }) {
     return (

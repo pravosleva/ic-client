@@ -7,11 +7,11 @@ export default function Route({ children }) {
     const { isAuthenticated, isLoading } = useApp();
     const router = useRouter();
 
-    if (isAuthenticated) {
-        if (typeof window !== 'undefined') {
-            router.push('/posts');
-        }
-    }
+    // if (isAuthenticated) {
+    //     if (typeof window !== 'undefined') {
+    //         router.push('/posts');
+    //     }
+    // }
 
     if (!isAuthenticated) {
         return <GuestLayout>{children}</GuestLayout>;

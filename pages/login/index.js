@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import styles from './index.module.scss';
-import Block from '../../components/block/Block';
+import Block from '../../components/Block/Block';
 import { useForm, FormProvider } from 'react-hook-form';
 import AuthApi from '../../api/AuthApi';
 
