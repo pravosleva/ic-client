@@ -1,4 +1,4 @@
-module.exports = {
+{
     "env": {
         "test": {
             "presets": [
@@ -7,7 +7,7 @@ module.exports = {
                 "next/babel"
             ]
         },
-        "development": {
+        "production": {
             "presets": [
                 "next/babel"
             ]
