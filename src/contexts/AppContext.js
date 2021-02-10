@@ -19,13 +19,13 @@ export const AppProvider = ({ children }) => {
 
     useEffect(() => {
         const handleRouteChange = url => {
-            if (url !== '/login' && user === false) {
-                window.location.href = '/login'
+            if (url !== '/' && user === false) {
+                window.location.href = '/'
             }
         }
 
-        if (pathname !== '/login' && user === false) {
-            window.location.href = '/login'
+        if (pathname !== '/' && user === false) {
+            window.location.href = '/'
         }
 
         events.on('routeChangeStart', handleRouteChange)

@@ -9,7 +9,7 @@ export default function PrivateLayout({ children }) {
 
     const logout = async () => {
         await AuthApi.logout();
-        router.push('/login');
+        router.push('/');
     }
 
     if (!isAuthenticated) {
