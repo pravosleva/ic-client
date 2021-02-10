@@ -1,10 +1,11 @@
 import { useState } from 'react';
-import styles from './index.module.scss';
+import styles from '../../styles/pages/index.module.scss';
 import Block from '../../components/Block/Block';
 import { useForm, FormProvider } from 'react-hook-form';
 import AuthApi from '../../api/AuthApi';
 import GuestLayout from '../../layouts/GuestLayout';
 import { useRouter } from 'next/router';
+import { useApp } from '../../contexts/AppContext';
 
 const Login = () => {
     const [isSubmitting, setSubmitting] = useState(false);
@@ -21,6 +22,7 @@ const Login = () => {
 
     const { handleSubmit, register, formState } = methods;
     const { isDirty, isValid } = formState;
+    const { setUser } = useApp();
 
     const onSubmit = async ({ username, password }) => {
         setSubmitting(true);
@@ -30,6 +32,7 @@ const Login = () => {
             setSubmitting(false);
 
             localStorage.setItem('token', token);
+            setUser(true);
             router.push('/posts');
         } catch (e) {
             setError(true)

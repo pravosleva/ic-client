@@ -33,9 +33,9 @@ export const AppProvider = ({ children }) => {
         return () => {
             events.off('routeChangeStart', handleRouteChange)
         }
-    }, [user])
+    }, [])
 
-    return <AppContext.Provider value={{ isAuthenticated: user }}>{children}</AppContext.Provider>;
+    return <AppContext.Provider value={{ isAuthenticated: user, setUser }}>{children}</AppContext.Provider>;
 };
 
 export const useApp = () => useContext(AppContext);

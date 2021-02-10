@@ -70,7 +70,7 @@ const Table = ({ cols, data, itemsPerPage, actionHandler }) => {
                 </tbody>
             </table>
 
-            <nav aria-label="Page navigation example">
+            <nav>
                 <ul className="pagination justify-content-center">
                     <li className={`page-item ${ currentPage === 1 && ' disabled'}`}>
                         <a className="page-link" href="#" onClick={prevPage}>Previous</a>
@@ -81,7 +81,7 @@ const Table = ({ cols, data, itemsPerPage, actionHandler }) => {
                         const isActive = currentIndex === currentPage;
 
                         return (
-                            <li key={index} className={`page-item ${ isActive && ' active'}`}>
+                            <li key={index} className={`page-item d-none d-md-inline-block ${ isActive && ' active'}`}>
                                 {isActive ?
                                     <span className="page-link">{currentIndex}</span> :
                                     <a className="page-link" href="#" onClick={(e) => goToPage(e, currentIndex)}>

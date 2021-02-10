@@ -37,7 +37,7 @@ const Posts = ({ posts, errors }) => {
             {errors && <div>Error in fetch</div>}
             {posts && <Table itemsPerPage={15} data={posts} cols={cols} actionHandler={openEditModal} />}
             {currentPost &&
-                <Modal open={modalOpen} onClose={onCloseModal} center classNames={{ modal: 'w-50' }}>
+                <Modal open={modalOpen} onClose={onCloseModal} center classNames={{ modal: 'w-75' }}>
                     <h2>Edit post {currentPost.id}</h2>
                     <div className="row pt-3">
                         <div className="col-12">
