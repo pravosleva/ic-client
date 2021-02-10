@@ -5,17 +5,10 @@ import { useApp } from '../../contexts/AppContext';
 
 export default function Route({ children }) {
     const { isAuthenticated, isLoading } = useApp();
-    const router = useRouter();
+    console.log(isAuthenticated);
 
-    // if (isAuthenticated) {
-    //     if (typeof window !== 'undefined') {
-    //         router.push('/posts');
-    //     }
-    // }
-
-    if (!isAuthenticated) {
+    if (isAuthenticated === null || isAuthenticated === false) {
         return <GuestLayout>{children}</GuestLayout>;
-    } else {
-        return <PrivateLayout>{children}</PrivateLayout>;
     }
 }
+

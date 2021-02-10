@@ -3,10 +3,13 @@ import styles from './index.module.scss';
 import Block from '../../components/Block/Block';
 import { useForm, FormProvider } from 'react-hook-form';
 import AuthApi from '../../api/AuthApi';
+import GuestLayout from '../../layouts/GuestLayout';
+import { useRouter } from 'next/router';
 
 const Login = () => {
     const [isSubmitting, setSubmitting] = useState(false);
     const [isError, setError] = useState(false);
+    const router = useRouter();
 
     const methods = useForm({
         mode: 'onChange',
@@ -23,15 +26,19 @@ const Login = () => {
         setSubmitting(true);
 
         try {
-            await AuthApi.login(username, password);
+            const token = await AuthApi.login(username, password);
             setSubmitting(false);
+
+            localStorage.setItem('token', token);
+            router.push('/posts');
         } catch (e) {
+            setError(true)
             setSubmitting(false);
         }
     };
 
     return (
-        <>
+        <GuestLayout>
             <div className="col p-0 text-center d-flex justify-content-center align-items-center display-none">
                 <img src="logo.svg" className="w-50" alt="Logo" />
             </div>
@@ -62,9 +69,11 @@ const Login = () => {
                                         required: true
                                     })}
                                 />
+                                {isError && <div className="invalid-feedback d-block">
+                                    Please enter valid credentials
+                                </div>}
                             </div>
 
-                            {isError && <span>123</span>}
 
                             <button
                                 disabled={!isDirty || !isValid || isSubmitting}
@@ -84,7 +93,7 @@ const Login = () => {
                     </FormProvider>
                 </Block>
             </div>
-        </>
+        </GuestLayout>
     );
 };
 

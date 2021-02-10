@@ -17,9 +17,7 @@ export default function App({ Component, pageProps }) {
                 />
             </Head>
             <AppProvider>
-                <Route>
-                    <Component {...pageProps} />
-                </Route>
+                <Component {...pageProps} />
             </AppProvider>
         </Fragment>
     );

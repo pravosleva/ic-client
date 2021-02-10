@@ -4,6 +4,7 @@ import { useRouter } from 'next/router';
 import UsersApi from '../../api/UsersApi';
 
 import styles from './User.module.scss';
+import PrivateLayout from '../../layouts/PrivateLayout';
 
 const User = ({ user, error }) => {
     const router = useRouter();
@@ -34,7 +35,7 @@ const User = ({ user, error }) => {
     };
 
     return (
-        <div>
+        <PrivateLayout>
             <h1>User Edit</h1>
 
             <FormProvider {...methods}>
@@ -75,7 +76,7 @@ const User = ({ user, error }) => {
                     </div>
                 </form>
             </FormProvider>
-        </div>
+        </PrivateLayout>
     )
 }
 

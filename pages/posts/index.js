@@ -5,6 +5,7 @@ import 'react-responsive-modal/styles.css';
 import PostApi from '../../api/PostsApi';
 import Table from '../../components/Table/Table';
 import PostEditForm from '../../components/Posts/PostEditForm';
+import PrivateLayout from '../../layouts/PrivateLayout';
 
 const cols = [
     {
@@ -17,7 +18,7 @@ const cols = [
     }
 ];
 
-const Posts = ({ posts, error }) => {
+const Posts = ({ posts, errors }) => {
     const [modalOpen, setModalOpen] = useState(false);
     const [currentPost, setCurrentPost] = useState(null);
 
@@ -32,8 +33,9 @@ const Posts = ({ posts, error }) => {
     }
 
     return (
-        <>
-            <Table itemsPerPage={15} data={posts} cols={cols} actionHandler={openEditModal} />
+        <PrivateLayout>
+            {errors && <div>Error in fetch</div>}
+            {posts && <Table itemsPerPage={15} data={posts} cols={cols} actionHandler={openEditModal} />}
             {currentPost &&
                 <Modal open={modalOpen} onClose={onCloseModal} center classNames={{ modal: 'w-50' }}>
                     <h2>Edit post {currentPost.id}</h2>
@@ -44,16 +46,27 @@ const Posts = ({ posts, error }) => {
                     </div>
                 </Modal>
             }
-        </>
+        </PrivateLayout>
     );
 };
 
 export async function getServerSideProps() {
-    const posts = await PostApi.getPosts();
+    let posts = null;
+    let errors = null;
+
+    try {
+        posts = await PostApi.getPosts();
+
+    } catch (e) {
+        errors = {
+            statusCode: 404
+        }
+    }
 
     return {
         props: {
-            posts
+            posts,
+            errors
         }
     };
 }

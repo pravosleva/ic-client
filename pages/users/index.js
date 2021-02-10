@@ -1,6 +1,7 @@
 import UsersApi from '../../api/UsersApi';
 import Table from '../../components/Table/Table';
 import { useRouter } from 'next/router';
+import PrivateLayout from '../../layouts/PrivateLayout';
 
 const cols = [
     {
@@ -21,7 +22,7 @@ const cols = [
     }
 ];
 
-const Users = ({ users, error }) => {
+const Users = ({ users, errors }) => {
     const router = useRouter();
 
     const editUser = (item) => {
@@ -29,16 +30,30 @@ const Users = ({ users, error }) => {
     }
 
     return (
-        <Table itemsPerPage={5} data={users} cols={cols} actionHandler={editUser} />
+        <PrivateLayout>
+            {errors && <div>Error in fetch</div>}
+            <Table itemsPerPage={5} data={users} cols={cols} actionHandler={editUser} />
+        </PrivateLayout>
     )
 }
 
 export async function getServerSideProps() {
-    const users = await UsersApi.getUsers();
+    let users = null;
+    let errors = null;
+
+    try {
+        users = await UsersApi.getUsers();
+
+    } catch (e) {
+        errors = {
+            statusCode: 404
+        }
+    }
 
     return {
         props: {
-            users
+            users,
+            errors
         }
     };
 }

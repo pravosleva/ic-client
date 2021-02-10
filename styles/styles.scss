@@ -15,4 +15,22 @@
     background-color: #0F7E6B;
     border-color: #0F7E6B;
   }
+
+  &:disabled {
+    background-color: #1BCBAF;
+    border-color: #1BCBAF;
+  }
+}
+
+.page-item.active .page-link {
+  background-color: #17AB93;
+  border-color: #17AB93;
+}
+
+.page-link {
+  color: #17AB93;
+
+  &:hover {
+    color: #17AB93;
+  }
 }
