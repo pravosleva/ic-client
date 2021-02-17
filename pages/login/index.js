@@ -22,7 +22,7 @@ const Login = () => {
             password: ''
         }
     });
-    const { isAuthLoading } = useAuthContext();
+    const { isLoading: isAuthLoading } = useAuthContext();
 
     const { handleSubmit, register, formState } = methods;
     const { isDirty, isValid } = formState;
