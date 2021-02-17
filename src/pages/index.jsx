@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import styles from '../styles/pages/index.module.scss';
-import Block from '../components/Block/Block';
+import Block from '../common/components/Block/Block';
 import { useForm, FormProvider } from 'react-hook-form';
-import AuthApi from '../api/AuthApi';
-import GuestLayout from '../layouts/GuestLayout';
+import AuthApi from '../utils/httpClient/api/AuthApi';
+import GuestLayout from '../common/layouts/GuestLayout';
 import { useRouter } from 'next/router';
-import { useAuthContext } from '../contexts/AuthContext';
+import { useAuthContext } from '../common/contexts/AuthContext';
 
 const Login = () => {
     const [isSubmitting, setSubmitting] = useState(false);

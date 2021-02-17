@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router';
 import ActiveLink from '../components/ActiveLink';
-import AuthApi from '../api/AuthApi';
+import AuthApi from '../../utils/httpClient/api/AuthApi';
 import { useAuthContext } from '../contexts/AuthContext';
 
 export default function PrivateLayout({ children }) {

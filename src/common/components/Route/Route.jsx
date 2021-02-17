@@ -11,4 +11,3 @@ export default function Route({ children }) {
         return <GuestLayout>{children}</GuestLayout>;
     }
 }
-

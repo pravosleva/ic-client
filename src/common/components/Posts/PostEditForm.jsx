@@ -1,6 +1,6 @@
 import { FormProvider, useForm } from 'react-hook-form';
 import { useState } from 'react';
-import PostApi from '../../api/PostsApi';
+import PostApi from '../../../utils/httpClient/api/PostsApi';
 
 const PostEditForm = ({ post, onSubmitCallback }) => {
     const [isSubmitting, setSubmitting] = useState(false);
@@ -10,8 +10,7 @@ const PostEditForm = ({ post, onSubmitCallback }) => {
 
         try {
             await PostApi.savePost(data);
-        } catch (e) {
-        }
+        } catch (e) {}
 
         setSubmitting(false);
         onSubmitCallback();
@@ -57,17 +56,9 @@ const PostEditForm = ({ post, onSubmitCallback }) => {
                     </div>
                 </div>
                 <div className="text-end">
-                    <button
-                        disabled={!isValid || isSubmitting}
-                        type="submit"
-                        className="btn-primary btn w-25 mt-3"
-                    >
+                    <button disabled={!isValid || isSubmitting} type="submit" className="btn-primary btn w-25 mt-3">
                         {isSubmitting && (
-                            <span
-                                className="mx-2 spinner-border spinner-border-sm"
-                                role="status"
-                                aria-hidden="true"
-                            />
+                            <span className="mx-2 spinner-border spinner-border-sm" role="status" aria-hidden="true" />
                         )}
                         Save
                     </button>

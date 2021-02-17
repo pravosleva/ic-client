@@ -1,7 +1,7 @@
-import UsersApi from '../../api/UsersApi';
-import Table from '../../components/Table/Table';
+import UsersApi from '../../utils/httpClient/api/UsersApi';
+import Table from '../../common/components/Table/Table';
 import { useRouter } from 'next/router';
-import PrivateLayout from '../../layouts/PrivateLayout';
+import PrivateLayout from '../../common/layouts/PrivateLayout';
 
 const cols = [
     {
@@ -27,15 +27,15 @@ const Users = ({ users, errors }) => {
 
     const editUser = (item) => {
         router.push(`/users/${item.id}`);
-    }
+    };
 
     return (
         <PrivateLayout>
             {errors && <div>Error in fetch</div>}
             <Table itemsPerPage={5} data={users} cols={cols} actionHandler={editUser} />
         </PrivateLayout>
-    )
-}
+    );
+};
 
 export async function getServerSideProps() {
     let users = null;
@@ -43,11 +43,10 @@ export async function getServerSideProps() {
 
     try {
         users = await UsersApi.getUsers();
-
     } catch (e) {
         errors = {
             statusCode: 404
-        }
+        };
     }
 
     return {

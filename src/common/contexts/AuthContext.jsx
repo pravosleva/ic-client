@@ -1,6 +1,6 @@
 import { createContext, useState, useContext, useEffect } from 'react';
 import { useRouter } from 'next/router';
-import AuthApi from '../api/AuthApi';
+import AuthApi from '../../utils/httpClient/api/AuthApi';
 
 const AuthContext = createContext({});
 
