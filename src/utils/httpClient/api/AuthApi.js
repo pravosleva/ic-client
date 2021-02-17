@@ -1,9 +1,5 @@
 import TransportService from '~/utils/httpClient/services/TransportService';
-
-const delay = (ms = 500) =>
-    new Promise((res, _rej) => {
-        setTimeout(res, ms);
-    });
+import { delay } from '~/utils/delay';
 class AuthApi extends TransportService {
     async login(login, password) {
         if (login === 'admin' && password === 'admin') {

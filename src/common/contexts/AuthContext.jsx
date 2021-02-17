@@ -1,26 +1,13 @@
 import { createContext, useState, useContext, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import AuthApi from '~/utils/httpClient/api/AuthApi';
+import { log } from '~/utils/log';
 
 const AuthContext = createContext({});
 
-const log = (arg) => {
-    switch (true) {
-        case arg instanceof Error:
-            console.log(arg.message);
-            break;
-        case typeof arg === 'object':
-            console.table(arg);
-            break;
-        case typeof arg === 'string':
-        default:
-            console.log(arg);
-    }
-};
-
 export const AuthProvider = ({ children }) => {
     const { pathname, events, push } = useRouter();
-    const [isLogged, setIsLogged] = useState(null);
+    const [isLogged, setIsLogged] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
 
     useEffect(() => {
