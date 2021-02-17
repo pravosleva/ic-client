@@ -5,10 +5,14 @@ import { useForm, FormProvider } from 'react-hook-form';
 import AuthApi from '../../api/AuthApi';
 import GuestLayout from '../../layouts/GuestLayout';
 import { useRouter } from 'next/router';
+import { useAuthContext } from '../../contexts/AuthContext';
 
 const Login = () => {
     const [isSubmitting, setSubmitting] = useState(false);
-    const [isError, setError] = useState(false);
+    const [error, setError] = useState(null);
+    const resetError = () => {
+        setError(null);
+    };
     const router = useRouter();
 
     const methods = useForm({
@@ -18,25 +22,30 @@ const Login = () => {
             password: ''
         }
     });
+    const { isAuthLoading } = useAuthContext();
 
     const { handleSubmit, register, formState } = methods;
     const { isDirty, isValid } = formState;
 
     const onSubmit = async ({ username, password }) => {
+        resetError();
         setSubmitting(true);
 
-        try {
-            const token = await AuthApi.login(username, password);
-            setSubmitting(false);
+        await AuthApi.login(username, password)
+            .then((_token) => {
+                setSubmitting(false);
 
-            localStorage.setItem('token', token);
-            router.push('/posts');
-        } catch (e) {
-            setError(true)
-            setSubmitting(false);
-        }
+                router.push('/posts', '/posts', { shallow: true });
+            })
+            .catch((err) => {
+                if (typeof err === 'string') setError(errSrt);
+                setSubmitting(false);
+            });
     };
 
+    if (isAuthLoading) {
+        return <div>Checking auth...</div>;
+    }
     return (
         <GuestLayout>
             <div className="col p-0 text-center d-flex justify-content-center align-items-center display-none">
@@ -69,11 +78,8 @@ const Login = () => {
                                         required: true
                                     })}
                                 />
-                                {isError && <div className="invalid-feedback d-block">
-                                    Please enter valid credentials
-                                </div>}
+                                {error && <div className="invalid-feedback d-block">{error}</div>}
                             </div>
-
 
                             <button
                                 disabled={!isDirty || !isValid || isSubmitting}

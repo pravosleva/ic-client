@@ -1,8 +1,8 @@
 import Head from 'next/head';
 import { Fragment } from 'react';
-import { AppProvider } from '../contexts/AppContext';
+import { AuthProvider } from '../contexts/AuthContext';
 import '../styles/styles.scss';
-import Route from '../components/Route/Route';
+// import Route from '../components/Route/Route';
 
 export default function App({ Component, pageProps }) {
     return (
@@ -16,9 +16,9 @@ export default function App({ Component, pageProps }) {
                     crossOrigin="anonymous"
                 />
             </Head>
-            <AppProvider>
+            <AuthProvider>
                 <Component {...pageProps} />
-            </AppProvider>
+            </AuthProvider>
         </Fragment>
     );
 }
