@@ -1,0 +1,24 @@
+{
+    "env": {
+        "test": {
+        },
+        "production": {
+        }
+    },
+    "presets": [
+        "@babel/preset-env",
+        "@babel/preset-react",
+        "next/babel"
+    ],
+    "plugins": [
+        ["@babel/plugin-transform-runtime",
+            {
+                "regenerator": true
+            }
+        ],
+        "@babel/plugin-syntax-jsx",
+        "@babel/plugin-proposal-class-properties",
+        "@babel/plugin-proposal-export-default-from",
+        "react-hot-loader/babel"
+    ]
+}

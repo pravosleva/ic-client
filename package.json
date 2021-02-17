@@ -5,7 +5,9 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "test": "jest",
+    "test:coverage": "jest --coverage"
   },
   "dependencies": {
     "axios": "^0.21.1",
@@ -16,9 +18,24 @@
     "react-responsive-modal": "^6.0.1"
   },
   "devDependencies": {
+    "@babel/cli": "^7.12.16",
+    "@babel/plugin-proposal-export-default-from": "^7.12.13",
+    "@babel/plugin-syntax-jsx": "^7.12.13",
+    "@babel/plugin-transform-runtime": "^7.12.15",
+    "@babel/polyfill": "^7.12.1",
+    "@babel/preset-env": "^7.12.13",
+    "@babel/preset-react": "^7.12.13",
+    "@babel/runtime": "^7.12.13",
+    "@testing-library/jest-dom": "^5.11.9",
+    "@wojtekmaj/enzyme-adapter-react-17": "^0.4.1",
+    "babel-jest": "^26.6.3",
+    "babel-loader": "^8.2.2",
+    "enzyme": "^3.11.0",
     "eslint": "^7.19.0",
+    "jest": "^26.6.3",
     "prettier": "^2.2.1",
     "prop-types": "^15.7.2",
+    "react-hot-loader": "^4.13.0",
     "sass": "^1.32.6"
   }
 }

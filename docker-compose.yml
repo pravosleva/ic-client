@@ -3,6 +3,6 @@ services:
   nextjs:
     build: ./
   nginx:
-    build: ./nginx
+    build: infra/nginx
     ports:
       - 80:80

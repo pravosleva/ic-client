@@ -42,10 +42,10 @@ export const AuthProvider = ({ children }) => {
             setIsLoading(false);
 
             switch (true) {
-                case url !== '/login' && !isLoggedIn:
-                    push('/login');
+                case url !== '/' && !isLoggedIn:
+                    push('/');
                     break;
-                case url === '/login' && isLoggedIn:
+                case url === '/' && isLoggedIn:
                     push('/posts');
                     break;
                 default:
