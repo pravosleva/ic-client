@@ -1,7 +1,7 @@
-import UsersApi from '../../utils/httpClient/api/UsersApi';
-import Table from '../../common/components/Table/Table';
+import UsersApi from '~/utils/httpClient/api/UsersApi';
+import Table from '~/common/components/Table/Table';
 import { useRouter } from 'next/router';
-import PrivateLayout from '../../common/layouts/PrivateLayout';
+import PrivateLayout from '~/common/layouts/PrivateLayout';
 
 const cols = [
     {

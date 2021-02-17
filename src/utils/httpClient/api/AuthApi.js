@@ -1,4 +1,4 @@
-import TransportService from '../services/TransportService';
+import TransportService from '~/utils/httpClient/services/TransportService';
 
 const delay = (ms = 500) =>
     new Promise((res, _rej) => {

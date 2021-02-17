@@ -1,4 +1,4 @@
-import TransportService from '../services/TransportService';
+import TransportService from '~/utils/httpClient/services/TransportService';
 
 class PostsApi extends TransportService {
     async getPosts() {
@@ -8,7 +8,7 @@ class PostsApi extends TransportService {
     async savePost(data) {
         // return await this.httpClient.post('post', data);
 
-        return new Promise(function(resolve) {
+        return new Promise(function (resolve) {
             setTimeout(() => {
                 resolve(data);
             }, 2000);

@@ -1,10 +1,10 @@
 import { FormProvider, useForm } from 'react-hook-form';
 import { useState } from 'react';
 import { useRouter } from 'next/router';
-import UsersApi from '../../utils/httpClient/api/UsersApi';
+import UsersApi from '~/utils/httpClient/api/UsersApi';
 
 import styles from './User.module.scss';
-import PrivateLayout from '../../common/layouts/PrivateLayout';
+import PrivateLayout from '~/common/layouts/PrivateLayout';
 
 const User = ({ user, error }) => {
     const router = useRouter();

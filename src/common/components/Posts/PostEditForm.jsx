@@ -1,6 +1,6 @@
 import { FormProvider, useForm } from 'react-hook-form';
 import { useState } from 'react';
-import PostApi from '../../../utils/httpClient/api/PostsApi';
+import PostApi from '~/utils/httpClient/api/PostsApi';
 
 const PostEditForm = ({ post, onSubmitCallback }) => {
     const [isSubmitting, setSubmitting] = useState(false);

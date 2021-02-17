@@ -1,10 +1,8 @@
-import { useRouter } from 'next/router';
-import GuestLayout from '../../layouts/GuestLayout';
-import PrivateLayout from '../../layouts/PrivateLayout';
-import { useApp } from '../../contexts/AppContext';
+import GuestLayout from '~/common/layouts/GuestLayout';
+import { useAuthContext } from '~/common/contexts/AuthContext';
 
 export default function Route({ children }) {
-    const { isAuthenticated, isLoading } = useApp();
+    const { isAuthenticated } = useAuthContext();
     console.log(isAuthenticated);
 
     if (isAuthenticated === null || isAuthenticated === false) {

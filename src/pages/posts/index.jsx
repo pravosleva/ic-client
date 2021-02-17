@@ -2,10 +2,10 @@ import { useState } from 'react';
 import { Modal } from 'react-responsive-modal';
 import 'react-responsive-modal/styles.css';
 
-import PostApi from '../../utils/httpClient/api/PostsApi';
-import Table from '../../common/components/Table/Table';
-import PostEditForm from '../../common/components/Posts/PostEditForm';
-import PrivateLayout from '../../common/layouts/PrivateLayout';
+import PostApi from '~/utils/httpClient/api/PostsApi';
+import Table from '~/common/components/Table/Table';
+import PostEditForm from '~/common/components/Posts/PostEditForm';
+import PrivateLayout from '~/common/layouts/PrivateLayout';
 
 const cols = [
     {

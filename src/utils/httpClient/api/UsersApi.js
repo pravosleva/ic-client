@@ -1,4 +1,4 @@
-import TransportService from '../services/TransportService';
+import TransportService from '~/utils/httpClient/services/TransportService';
 
 class UsersApi extends TransportService {
     async getUsers() {
@@ -12,7 +12,7 @@ class UsersApi extends TransportService {
     async saveUser(data) {
         // return await this.httpClient.post('post', data);
 
-        return new Promise(function(resolve) {
+        return new Promise(function (resolve) {
             setTimeout(() => {
                 resolve(data);
             }, 2000);
